@@ -72,6 +72,7 @@ Cable UTP Cat5e cobre puro	1,000 m	-	~MXN 14 por m	~MXN 14,000
 
 
 Cronograma:
+
  <img width="589" height="387" alt="image" src="https://github.com/user-attachments/assets/8a699ae0-e723-42c2-a79a-570314ca7ea8" />
 
  
