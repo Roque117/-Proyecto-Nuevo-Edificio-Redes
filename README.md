@@ -1,79 +1,83 @@
-Proyecto de Red LAN – Edificio de Ingeniería Química y Petrolera.
+# Diseño e Implementación de Red LAN: Edificio de Ingeniería Química y Petrolera
 
-Objetivo. 
-Diseñar e implementar una red de área local (LAN) estructurada para un edificio académico, orientada a proporcionar conectividad, segmentación y servicios de red para las aulas, oficinas administrativas y zonas especiales de la carrera de Ingeniería Química y Petrolera. 
-Infraestructura. 
-El edificio está dividido en dos alas cada un distribuidas de la siguiente manera:
-•	Aulas teóricas: Q201, Q202
-•	Laboratorios: P101, P102, Lab
-•	Área administrativa: Admin
-•	Sala de sistemas: SalaMst
+Este proyecto detalla el diseño de una red de área local (LAN) estructurada para un entorno académico. El sistema está orientado a proporcionar conectividad robusta, segmentación de tráfico y servicios de red integrados para aulas, laboratorios y oficinas administrativas.
 
-Cada sala cuenta con 8 equipos de computo y un switch de acceso por cada PC, excepto el Lab y SalaMst que tienem un solo Switch para 8 PC’s, cableado estructurado Categoría 6 y estaciones de trabajo conectadas en topología estrella.
-La sala de sistemas aloja un router principal.
+## Infraestructura y Distribución
 
-Topología elegida y justificación
-Se adopta una topología jerárquica de tres capas:
-•	Capa de Acceso: switches en cada sala para conectar dispositivos finales.
-•	Capa de Distribución: enlaces troncales entre los switches de acceso y el núcleo.
-•	Capa de Núcleo: switch principal y router en la sala de sistemas.
+El edificio se divide en dos alas funcionales distribuidas de la siguiente manera:
+* **Aulas teóricas:** Q201, Q202.
+* **Laboratorios:** P101, P102, Lab.
+* **Área administrativa:** Admin.
+* **Sala de sistemas (MDT):** SalaMst.
 
-Justificación:
-La topología jerárquica permite escalabilidad, segmentación por VLAN, facilidad de mantenimiento y control del tráfico. Además, soporta crecimiento futuro y redundancia.
-Topología lógica
-•	Router-on-a-Stick con subinterfaces para inter-VLAN.
-•	VLANs definidas para:
-1.	Estudiantes (aulas teóricas)
-2.	Laboratorios
-3.	Administración
-•	Voz (VoIP)
-•	Servidores
-•	Enrutamiento estático y soporte de RIP para pruebas.
-•	DHCP con pools independientes por VLAN.
-•	NAT para acceso a Internet.
+### Estándares de Conexión
+* **Densidad:** Cada sala cuenta con 8 equipos de cómputo.
+* **Hardware de Acceso:** Un switch por PC en aulas y laboratorios (excepto Lab y SalaMst que utilizan un switch centralizado para 8 terminales).
+* **Medios:** Cableado estructurado Categoría 6 en topología estrella.
+* **Core:** El Router principal se aloja en la sala de sistemas.
 
-Servicios de red implementados
-•	DHCP: asignación automática de direcciones IP.
-•	DNS: resolución interna y reenvío externo.
-•	HTTP/FTP: acceso a recursos web y transferencia de archivos.
-•	VoIP: comunicación interna mediante teléfonos IP.
-•	Segmentación por VLANs para separar tráfico de usuarios, administración y servidores.
+---
 
-Seguridad y escalabilidad. 
-Se plantea el uso de listas de control de acceso (ACLs) para restringir el tráfico entre segmentos. El diseño modular permite la expansión de la red y puede incluir redundancia mediante protocolos como STP. 
-Tenemos la presencia de dispositivos como PCs, La topología incluye varios switches por aula, interconexiones hacia un núcleo, y servidores esperados en la sala de Sistemas. 
+## Arquitectura de Red
 
-Inventario de dispositivos y funciones por área
-Área	PCs	Switches	Servidores	Impresoras	Routers	Función principal
-Q202	8	8	0	0	1	Aula teórica
-Q201	8	8	0	0	1	Aula teórica
-P102	8	8	0	0	1	Laboratorio
-P101	8	8	0	0	1	Laboratorio
-Lab	8	8	0	0	1	Laboratorio
-Admin	8	1	0	0	1	Gestión académica y administrativa
-SalaMst	8	1 (núcleo)	0	0	1	Centro de red y servicios
-Total	56	42	0	0	7	
+### Topología Jerárquica
+Se ha implementado un diseño de tres capas para asegurar escalabilidad y redundancia:
+1. **Capa de Acceso:** Switches locales para la conexión de dispositivos finales.
+2. **Capa de Distribución:** Enlaces troncales para la agregación de tráfico hacia el núcleo.
+3. **Capa de Núcleo:** Switch principal y Gateway (Router) central.
 
-CISCO:
+### Configuración Lógica
+* **Inter-VLAN Routing:** Implementación de Router-on-a-Stick con subinterfaces.
+* **VLANs Segmentadas:** Estudiantes, Laboratorios, Administración, Voz (VoIP) y Servidores.
+* **Protocolos:** Enrutamiento estático, RIP para entornos de prueba, DHCP por VLAN y NAT para salida a Internet.
+* **Seguridad:** Listas de Control de Acceso (ACLs) para restricción de tráfico inter-segmento y Spanning Tree Protocol (STP).
 
-<img width="555" height="255" alt="image" src="https://github.com/user-attachments/assets/141e92f9-593b-4d0d-bc30-03ff7edae1c2" />
+---
 
+## Servicios de Red Implementados
+* **DHCP:** Asignación dinámica de direccionamiento IP por pools independientes.
+* **DNS:** Resolución de nombres interna y reenvío de consultas externas.
+* **HTTP/FTP:** Servidores para acceso a recursos web y transferencia de archivos.
+* **VoIP:** Infraestructura de comunicación interna mediante telefonía IP.
 
-Presupuesto: 
+---
 
-Ítem	Cantidad	Precio unitario aprox. (USD)	Precio unitario aprox. (MXN)†	Total estimado MXN
+## Inventario de Dispositivos
 
-Cisco Router 2911 (nuevo)	7	$3,245	~MXN $59,000	~MXN 413,000
-Cisco Switch 2960 24TT (nuevo)	42	$1,525	~MXN $28,000	~MXN 1,176,000
-Computadora de escritorio básica
-	64	~~USD 250–300	~MXN 5,000–6,000	~MXN 320,000–384,000
-Cable UTP Cat5e cobre puro	1,000 m	-	~MXN 14 por m	~MXN 14,000
+| Área | PCs | Switches | Routers | Función Principal |
+| :--- | :--- | :--- | :--- | :--- |
+| Q201/Q202 | 16 | 16 | 2 | Aula teórica |
+| P101/P102 | 16 | 16 | 2 | Laboratorio |
+| Lab | 8 | 8 | 1 | Laboratorio |
+| Admin | 8 | 1 | 1 | Gestión administrativa |
+| SalaMst | 8 | 1 | 1 | Centro de red |
+| **Total** | **56** | **42** | **7** | |
 
+---
 
+## Evidencias de Diseño (Cisco Packet Tracer)
 
-Cronograma:
+![Topología Cisco](https://github.com/user-attachments/assets/141e92f9-593b-4d0d-bc30-03ff7edae1c2)
 
- <img width="589" height="387" alt="image" src="https://github.com/user-attachments/assets/8a699ae0-e723-42c2-a79a-570314ca7ea8" />
+---
 
- 
+## Análisis de Presupuesto
+
+| Ítem | Cantidad | Precio Unitario (MXN) | Total Estimado (MXN) |
+| :--- | :--- | :--- | :--- |
+| Cisco Router 2911 | 7 | $59,000 | $413,000 |
+| Cisco Switch 2960 24TT | 42 | $28,000 | $1,176,000 |
+| Estación de Trabajo | 64 | $6,000 | $384,000 |
+| Cable UTP Cat5e (1000m) | 1 | $14,000 | $14,000 |
+| **Inversión Total** | | | **$1,987,000** |
+
+---
+
+## Cronograma de Implementación
+
+![Cronograma](https://github.com/user-attachments/assets/8a699ae0-e723-42c2-a79a-570314ca7ea8)
+
+---
+**Institución:** Universidad Politécnica de Querétaro (UPQ)  
+**Proyecto:** Ingeniería Química y Petrolera - LAN Infrastructure
 
