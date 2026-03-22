@@ -1,5 +1,9 @@
 # Diseño e Implementación de Red LAN: Edificio de Ingeniería Química y Petrolera
 
+![Estado del Proyecto](https://img.shields.io/badge/Estado-Completado-green?style=for-the-badge)
+![Tecnología](https://img.shields.io/badge/Herramienta-Cisco_Packet_Tracer-blue?style=for-the-badge&logo=cisco)
+![VLANs](https://img.shields.io/badge/Segmentación-VLANs_&_Inter--VLAN-orange?style=for-the-badge)
+
 Este proyecto detalla el diseño de una red de área local (LAN) estructurada para un entorno académico. El sistema está orientado a proporcionar conectividad robusta, segmentación de tráfico y servicios de red integrados para aulas, laboratorios y oficinas administrativas.
 
 ## Infraestructura y Distribución
